@@ -32,6 +32,6 @@ public class PhysicsSimulation : MonoBehaviour
 
         t = t + dt;
         
-        Debug.Log(t);
+        //Debug.Log(t);
     }
 }
