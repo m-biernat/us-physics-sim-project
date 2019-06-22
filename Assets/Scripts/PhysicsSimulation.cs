@@ -1,36 +1,33 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 public class PhysicsSimulation : MonoBehaviour
 {
-    public List<PhysicsBody> bodies;
+    private SimulationManager simulationManager;
 
-    float t, dt;
-
-	void Start ()
+    void Start ()
     {
-        t = 0;
-        dt = 0.01f;
+        simulationManager = GetComponent<SimulationManager>();
 	}
 	
 	void FixedUpdate ()
     {
-        foreach (PhysicsBody body in bodies)
+        foreach (PhysicsBody body in simulationManager.bodies)
         {
-            foreach (PhysicsBody attractingBody in bodies)
+            foreach (PhysicsBody attractingBody in simulationManager.bodies)
             {
                 if (attractingBody != body)
                 {
                     body.force = PhysicsForce.CalculateForce(body, attractingBody);
-                    body.momentum = body.momentum + body.force * dt;
+                    body.momentum = body.momentum + body.force * simulationManager.dt;
 
-                    Vector3 newPosition = body.transform.position + body.momentum / body.mass * dt;
+                    Vector3 newPosition = body.transform.position + 
+                        body.momentum / body.mass * simulationManager.dt;
                     body.transform.position = newPosition;
                 }
             }
         }
 
-        t = t + dt;
+        simulationManager.t += simulationManager.dt;
         
         //Debug.Log(t);
     }
