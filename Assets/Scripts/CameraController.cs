@@ -55,4 +55,9 @@ public class CameraController : MonoBehaviour
         camDistance = Mathf.Clamp(camDistance, -100f, -5f);
         arm.transform.localPosition = new Vector3(0f, 0f, camDistance);
     }
+
+    public void ResetPosition()
+    {
+        pivot.transform.position = Vector3.zero;
+    }
 }

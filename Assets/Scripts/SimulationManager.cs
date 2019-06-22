@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class SimulationManager : MonoBehaviour
 {
@@ -7,8 +8,20 @@ public class SimulationManager : MonoBehaviour
 
     public List<PhysicsBody> bodies;
 
-    void Start ()
+    public int activeSceneIndex = 0;
+
+    public void ReturnToMenu()
     {
-		
-	}
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
+
+    public void ResetSimulation()
+    {
+        SceneManager.LoadScene(activeSceneIndex, LoadSceneMode.Single);
+    }
+
+    public void CloseApplication()
+    {
+        Application.Quit();
+    }
 }
