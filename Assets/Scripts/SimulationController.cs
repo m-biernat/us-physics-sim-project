@@ -5,6 +5,8 @@ public class SimulationController : MonoBehaviour
     private SimulationManager simulationManager;
     private PhysicsSimulation physicsSimulation;
 
+    public GameObject centerOfMass;
+
 	void Start ()
     {
         simulationManager = GetComponent<SimulationManager>();
@@ -20,6 +22,9 @@ public class SimulationController : MonoBehaviour
         { SetSpeed(false); }
         if (Input.GetKeyDown(KeyCode.RightBracket))
         { SetSpeed(true); }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        { ToggleVisibility(); }
     }
 
     private void SetSpeed(bool forward)
@@ -33,5 +38,10 @@ public class SimulationController : MonoBehaviour
     private void TogglePause()
     {
         physicsSimulation.enabled = !physicsSimulation.enabled;
+    }
+
+    private void ToggleVisibility()
+    {
+        centerOfMass.SetActive(!centerOfMass.activeSelf);
     }
 }

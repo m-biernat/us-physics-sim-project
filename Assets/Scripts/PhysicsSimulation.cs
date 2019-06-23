@@ -25,10 +25,10 @@ public class PhysicsSimulation : MonoBehaviour
                     body.transform.position = newPosition;
                 }
             }
+
+            body.CalculateVelocity(simulationManager.dt);
         }
 
         simulationManager.t += simulationManager.dt;
-        
-        //Debug.Log(t);
     }
 }

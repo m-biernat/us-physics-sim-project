@@ -28,7 +28,10 @@ public class CameraController : MonoBehaviour
         else
         {   rotate = false; }
 
-        zAxisInput = Input.GetAxis("Mouse ScrollWheel");            
+        zAxisInput = Input.GetAxis("Mouse ScrollWheel");
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        { ResetPosition(); }
     }
 
     void LateUpdate()
@@ -55,8 +58,8 @@ public class CameraController : MonoBehaviour
         camRotationX -= xAxisInput * rotationSpeed;
         camRotationX = Mathf.Clamp(camRotationX, -90f, 90f);
 
+        camRotationY = pivot.transform.eulerAngles.y;
         camRotationY += yAxisInput * rotationSpeed;
-        camRotationY = Mathf.Clamp(camRotationY, -360f, 360f);
 
         return new Vector3(camRotationX, camRotationY, 0f);
     }

@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sim 1.unity
     guid: c53fb1bcb3fcd904f8bdc6087adb1c26
+  - enabled: 1
+    path: Assets/Scenes/Sim 2.unity
+    guid: e4074f56722a0bb4dbd73e6507ecacc6
+  - enabled: 1
+    path: Assets/Scenes/Sim 3.unity
+    guid: caa9f5a6facc76949a07fa4a690d554c
   m_configObjects: {}
