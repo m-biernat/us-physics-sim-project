@@ -11,6 +11,12 @@ public class CameraController : MonoBehaviour
 
     private bool rotate = false;
 
+    [SerializeField]
+    private float maxCameraDistance = -100f;
+    private float minCameraDistance = 5f;
+
+    public static Transform bodyPosition;
+
     void Update()
     {
         if (Input.GetMouseButton(1))
@@ -29,13 +35,19 @@ public class CameraController : MonoBehaviour
     {
         if (rotate)
         {
+            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             pivot.transform.eulerAngles = CalculateRotation();
         }
         else
-        {   Cursor.lockState = CursorLockMode.None; }
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
 
         if (zAxisInput != 0f) { SetDistance(); }
+
+        SetPosition();
     }
 
     private Vector3 CalculateRotation()
@@ -52,12 +64,21 @@ public class CameraController : MonoBehaviour
     private void SetDistance()
     {
         camDistance += zAxisInput * 50;
-        camDistance = Mathf.Clamp(camDistance, -100f, -5f);
+        camDistance = Mathf.Clamp(camDistance, maxCameraDistance, -minCameraDistance);
         arm.transform.localPosition = new Vector3(0f, 0f, camDistance);
     }
 
     public void ResetPosition()
     {
+        bodyPosition = null;
         pivot.transform.position = Vector3.zero;
+    }
+
+    private void SetPosition()
+    {
+        if (bodyPosition)
+        {
+            pivot.transform.position = bodyPosition.position;
+        }
     }
 }

@@ -8,7 +8,7 @@ public class SimulationSetup : MonoBehaviour
     public GameObject simulationManager;
 
     public GameObject buttomPanel;
-    public GameObject listPanel;
+    public GameObject previewPanel;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class SimulationSetup : MonoBehaviour
         simulationManager.GetComponent<PhysicsSimulation>().enabled = true;
         simulationManager.GetComponent<SimulationController>().enabled = true;
 
-        listPanel.SetActive(true);
+        previewPanel.SetActive(true);
         buttomPanel.SetActive(true);
         
         gameObject.SetActive(false);
